@@ -30,7 +30,7 @@ struct ContentView: View {
                     }.border(Color.blue, width: 2)
                     }.navigationTitle(Text("LOTR Trilogy"))
         }.border(Color.green, width: 2)
-        
+        // slight change
     }
     }
 
