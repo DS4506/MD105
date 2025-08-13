@@ -7,23 +7,24 @@
 
 import SwiftUI
 
-struct RowView: View {
-    let item: Book
+struct LinkView: View {
+    let book: Book
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(item.image)
+            Image(book.image)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 48, height: 48)
                 .clipped()
                 .cornerRadius(8)
 
-            Text(item.title)
+            Text(book.title)
                 .font(.headline)
         }
     }
 }
 #Preview {
+    ContentView()
     
 }
