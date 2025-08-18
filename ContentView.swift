@@ -13,23 +13,43 @@ import SwiftUI
 // MARK: - Main View
 struct ContentView: View {
     @State private var books:[Book] = getBooks()
+    @State private var showingAddBookSheet:Bool = false
+    @State private var newBook = Book(title: "", author: "", image:"Default_book", description: "", rating: 0, review: "", status:.planToRead)
     
     var body: some View {
         NavigationView {
-            List($books) {$book in
+            List($books){ $book in
                 NavigationLink(destination: DetailView(book: $book)) {
                     LinkView(book: book)
                 }
-                .border(Color.blue, width: 2)
             }
+            
+            .navigationTitle("My Books")
+            .toolbar {
+                ToolbarItem(placement:.navigationBarTrailing) {
+                    Button(action: { showingAddBookSheet = true}) {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
+                    }
+                    .accessibilityLabel("Add a new book")
+                }
+            }
+            .sheet(isPresented: $showingAddBookSheet) {
+                if !newBook.title.isEmpty {
+                    books.append(newBook)
+                } else {
+                    newBook = Book(title: "", author: "", image:"Default_book", description: "", rating: 0, review: "", status:.planToRead)
+                }
+            } content: {
+                EditView(book: $newBook)
+            }
+            .border(Color.blue, width: 2)
+            }
+            .border(Color.green, width: 2)
             .navigationTitle("LOTR Trilogy")
         }
-        .border(Color.green, width: 2)
+
     }
-}
-
-
-
 
 #Preview {
     ContentView()

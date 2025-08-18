@@ -10,17 +10,18 @@ func getBooks() -> [Book] {
     return [
         Book(
             title: "The Fellowship of the Ring",
-            author: "John",
+            author: "John Tolkien",
             image: "book 1",
             description: "The first journey of the Fellowship as they set out to destroy the One Ring.",
             rating: 3,
             review: "This is the review of The Fellowship of the Ring",
-            status: .reading
+            status: .reading,
+            isFavorite: true
         ),
         
         Book(
             title: "The Two Towers",
-            author: "Dave",
+            author: "Dave Epifanio",
             image: "book 2",
             description: "The Fellowship is split and new alliances are forged as the war for Middle-earth grows.",
             rating: 4,
@@ -30,12 +31,13 @@ func getBooks() -> [Book] {
         
         Book(
             title: "The Return of the King",
-            author: "John",
+            author: "Rolland James",
             image: "book 3",
             description: "The final push against Sauron and the fate of the Ring are decided.",
             rating: 5,
             review: "This is the review of the return of the king",
-            status: .planToRead
+            status: .planToRead,
+            isFavorite: true
         )
     ]
 }

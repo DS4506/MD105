@@ -5,10 +5,11 @@
 //  Created by Willie Earl on 8/11/25.
 //
 
-enum ReadingStatus: String {
+enum ReadingStatus: String, CaseIterable, Hashable {
     case planToRead = "Plan to Read"
     case reading = "Reading"
     case dropped = "Dropped"
     case finished = "Finished"
     
 }
+//[ planToRead, reading, dropped, finished]

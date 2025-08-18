@@ -14,10 +14,11 @@ struct Book: Identifiable {
     var author: String
     var image: String
     var description: String
-    var rating: Double
+    var rating: Int
     var review: String
     
     var status: ReadingStatus // "Plan to read", "Reading" , "Dropped" , "Finished"
+    var isFavorite: Bool = false
 }
     
 

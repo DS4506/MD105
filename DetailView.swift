@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
-//    let book: Book
+    //    let book: Book
     
     @Binding var book: Book
     @State private var showingEditSheet = false
@@ -23,10 +23,8 @@ struct DetailView: View {
                         Image(book.image)
                             .resizable()
                             .scaledToFit()
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 260)
-                            .cornerRadius(12)
-                            .padding(.horizontal)
+                            .frame(maxWidth: 100, maxHeight:150)
+                            .padding(.vertical,20)
                         
                         VStack{
                             Text(book.title)
@@ -39,12 +37,36 @@ struct DetailView: View {
                         
                     }
                     
+                    
+                    HStack{
+                        ForEach(1...5, id: \.self) {count in
+                            Image(systemName: count <= book.rating ? "star.fill" : "star")
+                                .foregroundColor(.yellow)
+                        }
+                    }
+                    .accessibilityLabel("\(book.rating) out of 5 stars")
+                    
+                    Text(book.status.rawValue)
+                        .font(.caption).fontWeight(.bold).padding(8)
+                        .background(Color.accentColor.opacity(0.2))
+                        .clipShape(Capsule())
+                    
                     if !book.description.isEmpty {
-                        VStack {
+                        VStack(alignment: .leading) {
                             Text(book.description)
                         }
-                        
                     }
+                    
+                    if !book.review.isEmpty {
+                        VStack(alignment: .leading) {
+                            Text("My Review")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            Text(book.review)
+                        }
+                        .padding()
+                    }
+                    
                 }
             }
             
@@ -52,8 +74,8 @@ struct DetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing){
-                    Button("Edit"){
-                        //                    Image(systemName: "square.and.arrow.up")
+                    Button("Edit") {
+                        showingEditSheet = true
                     }
                 }
             }
@@ -62,4 +84,8 @@ struct DetailView: View {
             }
         }
     }
+}
+
+#Preview {
+    ContentView()
 }
