@@ -16,7 +16,8 @@ func getBooks() -> [Book] {
             rating: 3,
             review: "This is the review of The Fellowship of the Ring",
             status: .reading,
-            isFavorite: true
+            isFavorite: true,
+            genre: .fantasy
         ),
         
         Book(
@@ -26,7 +27,8 @@ func getBooks() -> [Book] {
             description: "The Fellowship is split and new alliances are forged as the war for Middle-earth grows.",
             rating: 4,
             review: "This is the review of the two towers",
-            status: .finished
+            status: .finished,
+            genre: .fantasy
         ),
         
         Book(
@@ -37,7 +39,8 @@ func getBooks() -> [Book] {
             rating: 5,
             review: "This is the review of the return of the king",
             status: .planToRead,
-            isFavorite: true
+            isFavorite: true,
+            genre: .fantasy
         )
     ]
 }

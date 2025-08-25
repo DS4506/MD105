@@ -46,46 +46,48 @@ struct DetailView: View {
                     }
                     .accessibilityLabel("\(book.rating) out of 5 stars")
                     
-                    Text(book.status.rawValue)
-                        .font(.caption).fontWeight(.bold).padding(8)
-                        .background(Color.accentColor.opacity(0.2))
-                        .clipShape(Capsule())
-                    
-                    if !book.description.isEmpty {
-                        VStack(alignment: .leading) {
-                            Text(book.description)
+                    HStack{
+                        Text(book.status.rawValue)
+                            .font(.caption).fontWeight(.bold).padding(8)
+                            .background(Color.accentColor.opacity(0.2))
+                            .clipShape(Capsule())
+                        
+                        if !book.description.isEmpty {
+                            VStack(alignment: .leading) {
+                                Text(book.description)
+                            }
                         }
-                    }
-                    
-                    if !book.review.isEmpty {
-                        VStack(alignment: .leading) {
-                            Text("My Review")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                            Text(book.review)
+                        
+                        if !book.review.isEmpty {
+                            VStack(alignment: .leading) {
+                                Text("My Review")
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                Text(book.review)
+                            }
+                            .padding()
                         }
-                        .padding()
-                    }
-                    
-                }
-            }
-            
-            .navigationTitle(book.title)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button("Edit") {
-                        showingEditSheet = true
+                        
                     }
                 }
-            }
-            .sheet(isPresented: $showingEditSheet) {
-                EditView(book: $book)
+                
+                .navigationTitle(book.title)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button("Edit") {
+                            showingEditSheet = true
+                        }
+                    }
+                }
+                .sheet(isPresented: $showingEditSheet) {
+                    EditView(book: $book)
+                }
             }
         }
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}

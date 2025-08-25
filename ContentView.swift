@@ -14,7 +14,17 @@ import SwiftUI
 struct ContentView: View {
     @State private var books:[Book] = getBooks()
     @State private var showingAddBookSheet:Bool = false
-    @State private var newBook = Book(title: "", author: "", image:"Default_book", description: "", rating: 0, review: "", status:.planToRead)
+    @State private var newBook = Book(
+        title: "",
+        author: "",
+        image:"Default_book",
+        description: "",
+        rating: 0,
+        review: "",
+        status:.planToRead,
+        isFavorite: true,
+        genre: .scifi
+    )
     
     var body: some View {
         NavigationView {
@@ -38,7 +48,7 @@ struct ContentView: View {
                 if !newBook.title.isEmpty {
                     books.append(newBook)
                 } else {
-                    newBook = Book(title: "", author: "", image:"Default_book", description: "", rating: 0, review: "", status:.planToRead)
+                    newBook = Book(title: "", author: "", image:"Default_book", description: "", rating: 0, review: "", status: .planToRead, isFavorite: true, genre: .scifi)
                 }
             } content: {
                 EditView(book: $newBook)
