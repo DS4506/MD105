@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BookListView: View {
     @Binding var books: [Book]
+    @state
     
     var body: some View {
         

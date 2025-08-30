@@ -14,7 +14,12 @@ struct FavoritesView: View {
     @State private var selectedGenre: Genre?
     @State private var selectedStatus: ReadingStatus?
     
-    let gridLayout = [GridItem(), GridItem()]
+    //let gridLayout = [GridItem(), GridItem()]
+    @AppStorage(GRID_COLUMN_NUMBERS_KEY) private var gridColumNumber: Int = 2
+    
+    private var gridLayout: [GridItem] {
+        Array(repeating: GridItem(), count: 3)
+    }
     
     private var favoriteBooks: [Binding<Book>] {
         $books.filter{

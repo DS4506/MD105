@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct SquareCardView: View {
-    var book: Book
+    var book: Book // dosen't edit
+    
+    @AppStorage(SETTINGS_GRID_SHOW_AUTHOR_KEY) private var showAuthor: Bool = true
+    
     
     var body: some View {
         VStack {
@@ -26,6 +29,9 @@ struct SquareCardView: View {
                 ))
             
             Spacer()
+            if gridShowAuthor {
+                
+            }
             
             Text(book.author)
                 .frame(maxWidth: .infinity)

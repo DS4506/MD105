@@ -12,6 +12,9 @@ import SwiftUI
 
 // MARK: - Main View
 struct ContentView: View {
+    @AppStorage(SETTINGS_THEME_KEY) private var theme: Theme = .system
+    @AppStorage(SETTINGS_APP_ACCENT_COLOR_KEY) private var appAccentColor: Color = .accentColor
+    
     @State private var books:[Book] = getBooks()
     @State private var showingAddBookSheet:Bool = false
     @State private var newBook = Book(
@@ -25,6 +28,19 @@ struct ContentView: View {
         isFavorite: true,
         genre: .scifi
     )
+    
+    var colorscheme: ColorScheme? {
+        switch(theme) {
+        case Theme.light:
+            return .ColorScheme.Light
+        case .dark:
+            return.dark
+        case .system:
+            return nil
+            
+        
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -58,6 +74,25 @@ struct ContentView: View {
             .border(Color.green, width: 2)
             .navigationTitle("LOTR Trilogy")
         }
+    TabView {
+        BookListView(books: $books)
+            .tabItem {
+                Label("My Books", systemImage: "book.vertical.fill")
+                
+            }
+        FavoritesView(books: $books)
+            .tabItem {
+                Label("Favorites", systemImage: "heart.fill")
+            }
+        SettingsView()
+            .tabItem {
+                Label("Settings", systemImage: "gearshape")
+            }
+        
+    }
+    .tint(_appAccentColor)
+    .preferredColorScheme(colorScheme)
+    
 
     }
 

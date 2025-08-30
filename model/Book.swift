@@ -8,8 +8,8 @@
 import SwiftUI
 
 // MARK: - Data Model
-struct Book: Identifiable {
-    let id = UUID()
+ public struct Book: Identifiable {
+   public let id = UUID()
     var title: String
     var author: String
     var image: String
