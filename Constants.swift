@@ -18,6 +18,10 @@ public let SETTINGS_GRID_SHOW_AUTHOR_KEY = "gridShowAuthor"
 
 public let SETTINGS_APP_ACCENT_COLOR_KEY = "appAccentColor"
 
+public let SETTINGS_LIST_SHOW_FAVORITES_ONLY_KEY = "listShowFavoritesOnly"
+
+public let SETTINGS_LIST_SORT_KEY = "listSortOption"
+
 struct spanishConstants {
     static let welcomeTitle = "¡Bienvenido!"
     static let welcomeSubtitle = "Biblioteca digital de libros clásicos!"
@@ -31,4 +35,20 @@ struct englishConstants {
 enum Language {
     case spanish
     case english
+}
+
+
+public enum ListSortOption: String, CaseIterable, Identifiable {
+    case title
+    case author
+    case ratingDescending
+    
+    public var id: String { rawValue }
+    public var label: String {
+        switch self {
+        case .title: return "Title A–Z"
+        case .author: return "Author A–Z"
+        case .ratingDescending: return "Rating High to Low"
+        }
+    }
 }

@@ -10,6 +10,12 @@ import SwiftUI
 enum Theme: String, CaseIterable{
     case light, dark, system
     
+    var id: String { rawValue }
+    var label: String {
+        switch self {
+        case .system: return "System"
+        case .light:  return "Light"
+        case .dark:   return "Dark"
 }
 
 struct SettingsView: View {
@@ -18,7 +24,14 @@ struct SettingsView: View {
     @AppStorage(GRID_COLUMN_NUMBERS_KEY) private var gridColumNumber: Int = 2
     @AppStorage(SETTINGS_GRID_SHOW_AUTHOR_KEY) private var showAuthor: Bool = true
     @AppStorage(SETTINGS_APP_ACCENT_COLOR_KEY) private var appAccentColor: Color = .accentColor
+    // New list settings
+    @AppStorage(SETTINGS_LIST_SHOW_FAVORITES_ONLY_KEY) private var showFavoritesOnly: Bool = false
+    @AppStorage(SETTINGS_LIST_SORT_KEY) private var sortOptionRaw: String = ListSortOption.title.rawValue
     
+    private var sortOption: ListSortOption {
+        get { ListSortOption(rawValue: sortOptionRaw) ?? .title }
+        set { sortOptionRaw = newValue.rawValue }
+    }
     
     var body: some View {
         NavigationStack {
@@ -37,11 +50,31 @@ struct SettingsView: View {
                     
                 }
            }
-      }
+            // New: List settings
+            Section(header: Text("List settings")) {
+                Toggle("Show favorites only", isOn: $showFavoritesOnly)
+                
+                Picker("Sort books by", selection: Binding(
+                    get: { sortOption },
+                    set: { sortOption = $0 }
+                )) {
+                    ForEach(ListSortOption.allCases) { opt in
+                        Text(opt.label).tag(opt)
+                    }
+                }
+            }
+            
+            // About
+            Section(header: Text("About")) {
+                Text("Classic Books Library")
+                Text("Version 1.0").foregroundStyle(.secondary)
+            }
+        }
+        .navigationTitle("Settings")
+    }
+}      }
    }
 
 
     
-
-
 
