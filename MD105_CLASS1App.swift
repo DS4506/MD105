@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
-struct MD105_CLASS1App: App {
+struct MD105App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BookListView()
         }
+        .modelContainer(for: PersistentBook.self)
     }
 }

@@ -8,13 +8,13 @@
 import SwiftData
 import Foundation
 
-//@model
-//class UploadedImage {
-//    @Attribute(.externalStorage) var imageData: Data?
-//    
-//    
-//    int(imageData: Data?) {
-//        self.imageData = imageData
-//    }
-//    
-//}
+@Model
+class UploadedImage {
+    var imageData: Data?
+    
+    init(imageData: Data?) {
+        self.imageData = imageData
+        
+    }
+    
+}
